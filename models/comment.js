@@ -7,7 +7,8 @@ var commentSchema = new mongoose.Schema({
 			ref:"User"
 		},
 		username: String
-	}		
+	},
+	rating:Number	
 	
 });
 module.exports= mongoose.model("Comment",commentSchema);

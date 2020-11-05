@@ -8,11 +8,12 @@
 	 </p>
 	</div>
 </header>
+<div class="container">
  <div class="row text-center" style="display:flex; flex-wrap: wrap;">
 	 <% campgrounds.forEach(function(campground) { %>
-		<div class="col-md-3 col-sm-6">
+		<!-- <div class="col-sm-6 col-md-3 ">
 			<div class="thumbnail">
-			 <img src="<%= campground.image%>">
+			 <img src="<%= campground.image%>" class="d-block w-100 " alt="">
 				<div class="caption">
 				<h4><%= campground.name%></h4>
 				</div>
@@ -22,7 +23,31 @@
 			</div>
 				
 			
-        </div>
+		</div> -->
+		
+
+
+		<!-- new code -->
+		<div class="card mb-3">
+			<div class="row">
+				<div class="col-md-4">
+					
+					<img class="img-fluid" alt="" src="<%=campground.image%>">
+					
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title"><%= campground.name %> </h5>
+						<p class="card-text"><%= campground.description %></p>
+						
+						<a class="btn btn-primary" href="/campgrounds/<%=campground._id%>">View <%=campground.name%></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- new code end here -->
 		
 	
 <% }); %>
@@ -31,3 +56,13 @@
 
 </div>
 <%- include ("../partials/footer")%>
+
+<style>
+
+.container {
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  column-gap: 10px;
+  row-gap: 15px;
+}
+</style>

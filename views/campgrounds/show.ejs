@@ -5,15 +5,14 @@
 			<p class="lead">YelpCamp</p>
 			<div clas="list-group">
 				<li class="list-group-item active">Info 1</li>
-				<li class="list-group-item">Info 2</li>
-				<li class="list-group-item">Info 3</li>
+				
 			</div>
 		</div>
 		<div class="col-md-9">
 			<div class="thumbnail">
 				<img class="img-responsive" src="<%= campground.image%>">
 				<div class="caption-full">
-					<h4 class="pull-right">$<%= campground.price%>/night</h4>
+					
 					<h4><a><%= campground.name%></a></h4>
 					<p><%= campground.description%></p>
 					<p><em>Submitted By <%= campground.author.username%></em></p>
@@ -25,25 +24,60 @@
 
 				</div>
 			</div>
+
+
+			<!-- add new comment -->
+
+
+			<div class="container">
+				<div class="row">
+				  <h1>Leave a Review to <%= campground.name%></h1>
+					<div class="col-md-9">
+				  <form action="/campgrounds/<%= campground._id%>/comments" method="POST"  class="validated-form" novalidate>
+					  <div class="form-group">
+						<label class="form-label" for="rating">Rating</label>
+						<input class="form-range" type="range" min="1" max="5" name="comment[rating]" >
+					 
+					  </div>
+					  <textarea class="form-control" name="comment[text]"  placeholder="text" cols="30" rows="3" required></textarea>
+					  
+					 
+					 <div class="form-group">
+					  <button class="btn btn-success">submit</button>
+					  </div>
+				 </form>
+						<a href="/campgrounds">Go Back</a>
+				</div>
+			
+				</div>
+			</div>
+
+
+
+
 			<div class="well">
 				<div class="text-right">
-					<a class="btn btn-success" href="/campgrounds/<%= campground._id%>/comments/new">Add New Comment</a>
+					<!-- <a class="btn btn-success" href="/campgrounds/<%= campground._id%>/comments/new">Add New Comment</a> -->
 </div>
+               <b><u>Posted Suggestions!!</u></b>
 				<hr>
 				<% campground.comments.forEach(function(comment){%>
 				<div class="row">
 					<div class="col-md-12">
 						<strong><%= comment.author.username%></strong>
-						<span class="pull-right">10 days ago</span>
+						<br>
+						Rating-<%= comment.rating%>
+						
 						<p>
 							<%= comment.text%>
+							
 	                     </p>
 						<% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
 
 						<a class="btn btn-xs btn-warning" 
 						   href="/campgrounds/<%= campground._id%>/comments/<%=comment._id%>/edit">
 							Edit</a>
-						<form class="delete-form"action="/campgrounds/<%= campground._id%>/comments/<%=comment._id%>?_method=DELETE"                             method="POST">
+						<form class="delete-form"action="/campgrounds/<%= campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
 							<input type="submit" class="btn btn-xs btn-danger" value="Delete">
 						</form>
 						<% } %>
@@ -53,8 +87,23 @@
 <%})%>
 			</div>
 		</div>
+
+		
+		<!-- <form action="">
+			<div class="mb-3">
+                <label class="form-label" for="rating">Rating</label>
+                <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+            </div>
+			<div class="mb-3">
+				<label class="form-label" for="body">REVIEW</label>
+				<textarea class="form-control" name="comment[text]"  placeholder="text" cols="30" rows="3"></textarea>
+			</div>
+			<button class="btn btn-success">Add New Review</button>
+		</form> -->
 	</div>
 </div>
 
 
 <%- include ("../partials/footer")%>
+
+
