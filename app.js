@@ -30,30 +30,6 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 
-// Campground.create({name: "triund",
-// 				   image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-// 				  description: "this is very beautiful place to trek aaround .animals could also join your way"}, function(err,campground){
-// 	if(err)
-// 	{
-// 			console.log("error");
-// 		}
-// 	else{
-// 		console.log("newly created");
-// 		console.log(campground);
-// 	}
-//  });
-
-
-
-
-
-//var campgrounds=[
-//	{name: "triund",image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-//	{name: "granite hill",image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-//	{name: "mountain goat",image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"}
-	
-//];
-//seedDB();// seed the database
 
 //=======================|
 //Passporrt configuration|
