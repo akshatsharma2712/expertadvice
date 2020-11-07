@@ -1,8 +1,8 @@
-var Campground=require("../models/campground");
+var Post=require("../models/post");
 var Comment=require("../models/comment");
 //all the middleware
 var middlewareObj= {};
-middlewareObj.checkCampgroundOwnership = function(req,res,next)
+middlewareObj.checkPostOwnership = function(req,res,next)
  
 {
 	//is user logged in?
@@ -10,14 +10,14 @@ middlewareObj.checkCampgroundOwnership = function(req,res,next)
 	if(req.isAuthenticated())
 	
 		{
-				Campground.findById(req.params.id,function(err,foundCampground){
+				Post.findById(req.params.id,function(err,foundPost){
 		if(err)
 			{
 				res.redirect("back");
             }              
         else{
-				//does user own the campground??
-			if(foundCampground.author.id.equals(req.user._id))
+				//does user own the Post??
+			if(foundPost.author.id.equals(req.user._id))
 				{
 	             next();			
 				}
@@ -52,7 +52,7 @@ middlewareObj.checkCommentOwnership=function(req,res,next){
 				Comment.findById(req.params.comment_id,function(err,foundComment){
 		if(err)
 			{
-				req.flash("error","Campground not found");
+				req.flash("error","Post not found");
 				res.redirect("back");
             }              
         else{

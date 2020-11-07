@@ -2,23 +2,23 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
-			<p class="lead">YelpCamp</p>
+			<p class="lead">Expert Advice</p>
 			<div clas="list-group">
-				<li class="list-group-item active">Info 1</li>
+				<li class="list-group-item active">Info</li>
 				
 			</div>
 		</div>
 		<div class="col-md-9">
 			<div class="thumbnail">
-				<img class="img-responsive" src="<%= campground.image%>">
+				<img class="img-responsive" src="<%= post.image%>">
 				<div class="caption-full">
 					
-					<h4><a><%= campground.name%></a></h4>
-					<p><%= campground.description%></p>
-					<p><em>Submitted By <%= campground.author.username%></em></p>
-					<% if(currentUser && campground.author.id.equals(currentUser._id)) {%>
-					<a class="btn btn-warning" href="/campgrounds/<%=campground._id%>/edit">EDIT</a>
-					<form class ="delete-form"action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
+					<h4><a><%= post.name%></a></h4>
+					<p><%= post.description%></p>
+					<p><em>Submitted By <%= post.author.username%></em></p>
+					<% if(currentUser && post.author.id.equals(currentUser._id)) {%>
+					<a class="btn btn-warning" href="/posts/<%=post._id%>/edit">EDIT</a>
+					<form class ="delete-form"action="/posts/<%= post._id%>?_method=DELETE" method="POST">
 						<button class="btn btn-danger">DELETE</button></form>
 					<% } %>
 
@@ -31,9 +31,9 @@
 
 			<div class="container">
 				<div class="row">
-				  <h1>Leave a Review to <%= campground.name%></h1>
+				  <h1>Leave a Review to <%= post.name%></h1>
 					<div class="col-md-9">
-				  <form action="/campgrounds/<%= campground._id%>/comments" method="POST"  class="validated-form" novalidate>
+				  <form action="/posts/<%= post._id%>/comments" method="POST"  class="validated-form" novalidate>
 					  <div class="form-group">
 						<label class="form-label" for="rating">Rating</label>
 						<input class="form-range" type="range" min="1" max="5" name="comment[rating]" >
@@ -46,7 +46,7 @@
 					  <button class="btn btn-success">submit</button>
 					  </div>
 				 </form>
-						<a href="/campgrounds">Go Back</a>
+						<a href="/posts">Go Back</a>
 				</div>
 			
 				</div>
@@ -57,11 +57,11 @@
 
 			<div class="well">
 				<div class="text-right">
-					<!-- <a class="btn btn-success" href="/campgrounds/<%= campground._id%>/comments/new">Add New Comment</a> -->
+					<!-- <a class="btn btn-success" href="/posts/<%= post._id%>/comments/new">Add New Comment</a> -->
 </div>
                <b><u>Posted Suggestions!!</u></b>
 				<hr>
-				<% campground.comments.forEach(function(comment){%>
+				<% post.comments.forEach(function(comment){%>
 				<div class="row">
 					<div class="col-md-12">
 						<strong><%= comment.author.username%></strong>
@@ -75,9 +75,9 @@
 						<% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
 
 						<a class="btn btn-xs btn-warning" 
-						   href="/campgrounds/<%= campground._id%>/comments/<%=comment._id%>/edit">
+						   href="/posts/<%= post._id%>/comments/<%=comment._id%>/edit">
 							Edit</a>
-						<form class="delete-form"action="/campgrounds/<%= campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+						<form class="delete-form"action="/posts/<%= post._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
 							<input type="submit" class="btn btn-xs btn-danger" value="Delete">
 						</form>
 						<% } %>

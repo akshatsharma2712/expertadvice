@@ -2,7 +2,7 @@ var express= require("express");
 var app= express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var Campground= require("./models/campground");
+var Post= require("./models/post");
 var flash= require("connect-flash");
 var seedDB = require("./seeds");
 var Comment= require("./models/comment");
@@ -12,13 +12,13 @@ var User= require("./models/user");
 var methodOverride=require("method-override");
 //requiring diffrent routes
 
-var campgroundRoutes=require("./routes/campgrounds"),
+var postRoutes=require("./routes/posts"),
     commentRoutes=require("./routes/comments"),
 	indexRoutes=require("./routes/index");
 
 
-//mongoose.connect("mongodb://localhost:27017/yelp_camp",{useNewUrlParser:true});
-mongoose.connect('mongodb://localhost:27017/expertadvice', {useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false});
+//mongoose.connect("mongodb://localhost:27017/expert_advice",{useNewUrlParser:true});
+mongoose.connect('mongodb://localhost:27017/expertadvice_v2', {useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false});
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -54,8 +54,8 @@ app.use(function(req,res,next){
 });
 
 app.use("/",indexRoutes);
-app.use("/campgrounds",campgroundRoutes);
-app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/posts",postRoutes);
+app.use("/posts/:id/comments",commentRoutes);
 
 
 
