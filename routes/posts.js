@@ -21,6 +21,7 @@ var imageFilter = function (req, file, cb) {
 var upload = multer({ storage: storage, fileFilter: imageFilter})
 
 var cloudinary = require('cloudinary');
+const { query } = require("express");
 cloudinary.config({ 
   cloud_name: 'dcejv6x3d', 
   api_key: '841356472966823', 
@@ -29,6 +30,38 @@ cloudinary.config({
 
 //INDEX route- show all posts
 router.get("/",function(req,res){
+  //code for searching feature
+
+  //eval(require('locus'));// this will freeze the page
+
+  if(req.query.search)//for searching feature
+  {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');//g-global,i- ignore Case
+    Post.find({name: regex},function(err, allPost){
+      if(err)
+        {
+          console.log(err);
+        }
+      else
+     {
+      
+        if(allPost.length > 0)
+        {
+          res.render("posts/posts2",{posts:allPost,currentUser: req.user});
+        }
+        else
+        {
+          req.flash("error","No problem statement matched your searched input!!");
+          res.redirect("back");
+        }
+        
+      }
+      
+    });
+
+
+  }
+  else{
 
 //get posts from mongodb
 	Post.find({},function(err, allPost){
@@ -40,7 +73,8 @@ router.get("/",function(req,res){
 			res.render("posts/posts2",{posts:allPost,currentUser: req.user});
 		}
 		
-	})
+  })
+}
 //res.render("posts2",{posts:posts});
 });
 //CREATE- add new post to DB
@@ -153,7 +187,9 @@ router.delete('/:id', function(req, res) {
 });
 
 
-//middleware
+function escapeRegex(text) {
+  return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
 
 
 

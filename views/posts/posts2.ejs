@@ -2,15 +2,46 @@
 <div class="container">
 <header class="jumbotron">
 	<div class="container">
-	 <h1>Welcome to Expert Advice</h1>
-	    <p>View the problems that others may have also faced but you are lucky enough to have us</p>
-	    <p><a class="btn btn-primary btn-lg" href="/posts/new">ADD New Problem Statement</a>
-	 </p>
+		<div class="card">
+			<div class="card-header bg-info">
+				<h1>Welcome to Expert Advice!!</h1>
+
+			</div>
+			<div class="card-body">
+
+				
+			<p>View the problems that others may have also faced but you are lucky enough to have us</p>
+			<!-- <p><a class="btn btn-primary btn-lg" href="/posts/new">ADD New Problem Statement</a> -->
+		 </p>
+		 <p>
+			 
+
+			<form class="form-inline" action="/posts" method="GET" >
+				<input type="search" name="search"  placeholder="Search"  >
+				<button class="btn btn-outline-info btn-sm" type="submit" >Search</button>
+		<!-- <input type="submit" value="Search" class="btn btn-outline-info my-2 my-sm-0"> -->			
+</form>
+
+			 
+			 
+
+
+
+			
+		 </p>
+
+
+			</div>
+			
+			
+		</div>
+
 	</div>
 </header>
+
 <div class="container">
- <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-	 <% posts.forEach(function(post) { %>
+ <div class="row text-center" style="display:flex; flex-wrap: wrap;"> 
+	<% posts.forEach(function(post) { %>
 		<!-- <div class="col-sm-6 col-md-3 ">
 			<div class="thumbnail">
 			 <img src="<%= post.image%>" class="d-block w-100 " alt="">
@@ -60,6 +91,7 @@
 <style>
 
 .container {
+	margin-top:20px;
   grid-template-columns: 100px 50px 100px;
   grid-template-rows: 80px auto 80px; 
   column-gap: 10px;

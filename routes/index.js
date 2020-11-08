@@ -25,7 +25,7 @@ User.register(newUser,req.body.password,function(err,user){
 		{
 			console.log(err);
 			req.flash("error",err.message);
-			return res.render("register");
+			return res.redirect("/register");
 		}
 	passport.authenticate("local")(req,res,function(){
 res.redirect("/posts");
