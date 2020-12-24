@@ -20,6 +20,10 @@ res.render("register");
 
 router.post("/register",function(req,res){
 	var newUser=new User({username: req.body.username});
+	if(req.body.adminCode === 'A3T24444@')
+	{
+		newUser.isAdmin = true;
+	}
 User.register(newUser,req.body.password,function(err,user){
 	if(err)
 		{
